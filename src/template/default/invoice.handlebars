@@ -1,0 +1,144 @@
+<html lang="eng">
+  <head>
+     <meta charset="utf-8">
+     <link rel="stylesheet" href="{{localServer}}/styles.css">
+  </head>
+  <body>
+    <div class="top">
+      <div class="top-logo">
+        <img src="{{localServer}}/img/logo.png" alt="" class="logo">
+      </div>
+      <div class="top-company">
+        DANE FIRMY<br/>
+        VAT NR (NIP): PL0000000000<br/>
+        ADRES LINIA PIERWSZA<br/>
+        ADRES LINIA DRUGA<br/>
+      </div>
+      <div class="top-date">
+        {{invoice.date}} <br/>
+        Miasto
+      </div>
+    </div>
+    <div class="content">
+      <div class="invoice-header">
+        FAKTURA NR: {{invoice.number}}
+      </div>
+      <div class="invoice-to">
+        KLIENT:
+      </div>
+      <div class="invoice-client">
+      {{#each invoice.invoicedTo}}
+        {{this}}<br/>
+      {{/each}}
+      </div>
+      <div class="invoice-thank-you">
+        Dziękujemy za współpracę, z radością infromujemy o dostarczeniu usług wymienionych poniżej:
+      </div>
+      <div>
+        <table class="invoice-table">
+          <tr>
+            <th class="invoice-table__count">Lp.</th>
+            <th class="invoice-table__title">Nazwa towaru</th>
+            <th class="invoice-table__quantity">Ilość</th>
+            <th class="invoice-table__quantity-type">Jednostka miary</th>
+            <th class="invoice-table__quantity-type-netto">Cena jedn. netto</th>
+            <th>Wartość netto</th>
+            <th>VAT</th>
+            <th>Kwota VAT</th>
+            <th>Wartość brutto</th>
+          </tr>
+          {{#each invoice.items}}
+          <tr>
+            <td class="invoice-table__count">{{@index}}</td>
+            <td class="invoice-table__title">{{this.name}}</td>
+            <td class="invoice-table__quantity">{{this.quantity}}</td>
+            <td class="invoice-table__quantity-type">{{this.quantityType}}</td>
+            <td>{{prettyNumber this.quantityTypePriceNetto}}</td>
+            <td>{{prettyNumber this.sumNetto}}</td>
+            <td>{{prettyVat ../invoice.VAT}}</td>
+            <td>{{prettyNumber this.sumVat}}</td>
+            <td>{{prettyNumber this.sumBrutto}}</td>
+          </tr>
+          {{/each}}
+        </table>
+      </div>
+      <div class="invoice-summary">
+        <table class="invoice-summary__table">
+          <tr>
+            <td class="invoice-summary__name">summary netto</td>
+            <td class="invoice-summary__amount"> {{prettyNumber invoice.summary.netto}}</td>
+          </tr>
+          <tr>
+            <td class="invoice-summary__name">VAT ({{prettyVat invoice.VAT}})</td>
+            <td class="invoice-summary__amount"> {{prettyNumber invoice.summary.vat}}</td>
+          </tr>
+          <tr>
+            <td class="invoice-summary__name">global summary</td>
+            <td class="invoice-summary__amount"> {{prettyNumber invoice.summary.global}} </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="amount-words">
+        <div class="text-uppercase">Wartość słownie</div>
+        <div class="text-uppercase"> {{invoice.summary.globalWords}} </div>
+        <div class="text-uppercase">Podpis, jeżeli wymagany</div>
+      </div>
+      <div class="text-center">
+        Prosimy o uiszczenie płatności w terminie do 10 dni, na konto bankowe:
+      </div>
+      <div>
+        <table class="company-info">
+          <tr>
+            <td>
+              NAZWA FIRMY<br/>
+              ADRES LINIA PIERWSZA<br/>
+              ADRES LINIA DRUGA<br/>
+            </td>
+            <td>
+              NAZWA BANKU<br/>
+              00 0000 0000 0000 0000 0000 0000<br/>
+              SWIFT: SWIFTPL<br/>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="footer-icons">
+        <div class="footer__icon-block">
+          <div>
+            <img
+            src="{{localServer}}/img/ico_phone.png"
+            alt=""
+            class="footer-icon">
+          </div>
+          <div>
+            +48 600 000 000
+          </div>
+        </div>
+        <div class="footer__icon-block">
+          <div>
+            <img
+            src="{{localServer}}/img/ico_website.png"
+            alt=""
+            class="footer-icon">
+          </div>
+          <div>
+            www.mojastrona.com
+          </div>
+        </div>
+        <div class="footer__icon-block">
+          <div>
+            <img
+            src="{{localServer}}/img/ico_mail.png"
+            alt=""
+            class="footer-icon">
+          </div>
+          <div>
+            adres.mailowy@gmail.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

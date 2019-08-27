@@ -1,0 +1,4 @@
+/node_modules
+/dist
+/generatedPdfs
+package-lock.json

@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
+@main-margin: 22px;
+@top-height: 130px;
+@color-black: #000000;
+@color-gray: #EEEEEE;
+@color-gray-2: #AAAAAA;
+@color-gray-3: #444444;
+
+
+html {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: @main-margin;
+  padding: 0;
+}
+
+.top {
+  height: @top-height;
+  display: flex;
+  justify-content: space-between;
+  color: @color-gray-3;
+
+  &-logo,
+  &-company,
+  &-date {
+    display: flex;
+    vertical-align: top;
+  }
+
+  &-date,
+  &-company {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  }
+
+  &-date {
+    margin-top: 15px;
+  }
+
+  &-company {
+    flex: 2;
+    align-items: center;
+
+    &:before {
+      display: inline-block;
+      width: 2px;
+      height: 100px;
+      background-color: @color-gray-3;
+      content: ' ';
+      margin-right: 15px;
+    }
+  }
+
+  &-date {
+    text-align: right;
+  }
+}
+
+.invoice {
+  &-header {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin:10px 0;
+  }
+
+  &-to{
+    font-size: 1.5rem;
+    font-weight:bold;
+    margin-left:10px;
+  }
+
+  &-client{
+    line-height:1.2rem;
+    margin-left:10px;
+  }
+
+  &-thank-you{
+    margin:15px 0;
+    text-align: center;
+    font-size:1.1rem;
+  }
+
+  &-table{
+    border-collapse: collapse;
+    font-size:1rem;
+
+    tr:nth-child(2n){
+      background-color:@color-gray;
+    }
+
+    td, th{
+      border:1px solid @color-gray-2;
+      border-spacing: 1px;
+      padding:4px 6px;
+    }
+
+    th{
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    &__count{
+      text-align:center;
+      width:15px;
+    }
+
+    &__title{
+      width:120px;
+    }
+
+    &__quantity{
+      text-align:center;
+      width:25px;
+    }
+
+    &__quantity-type{
+      width:50px;
+      text-transform: uppercase;
+    }
+
+    &__quantity-type-netto{
+      width:80px;
+    }
+  }
+
+  &-summary{
+    margin-top:20px;
+    text-transform: uppercase;
+
+    &__table{
+      width:290px;
+      border-top:1px solid @color-gray-3;
+      margin-left:auto;
+      font-size:1.2rem;
+    }
+
+    &__name{
+      padding-right:15px;
+      text-align:right;
+    }
+
+    &__amount{
+      text-align:right;
+    }
+  }
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 270px;
+  width: 100vw;
+
+  &-icons {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    vertical-align: middle;
+    margin: 8px 30px 0;
+    padding-top: 10px;
+    border-top: 2px solid @color-black;
+  }
+
+  &__icon-block {
+    display: flex;
+    flex-flow: row;
+    line-height: 45px;
+    padding: 0 10px;
+    vertical-align: top;
+  }
+
+  &-icon {
+    display: inline-block;
+    width: 40px;
+    margin-right: 10px;
+  }
+}
+
+.logo {
+  width: auto;
+  height: @top-height;
+  margin-right:10px;
+}
+
+.text {
+  &-center {
+    text-align: center;
+  }
+
+  &-uppercase {
+    text-transform: uppercase;
+  }
+}
+
+.amount {
+  &-words {
+    text-align: center;
+    line-height:1.8rem;
+    margin-bottom:15px;
+  }
+}
+
+.company {
+  &-info {
+    width: 85%;
+    margin: auto;
+    line-height: 1.4;
+    font-size:1rem;
+  }
+}
