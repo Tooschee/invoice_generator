@@ -1,13 +1,13 @@
 # Invoice Generator
 
-This is simple invoice generator, that let's you keep all your invoices as one, big `json` file, and generate `.pdf` from it when needed
+This is simple invoice generator, that let's you keep all your invoices as one big `json` file, and generate `.pdf` from it when needed.
 
 ## How to use it
 
 * `config.js` keeps name of `template` path, so you can copy `default` template, and edit it to your needs. There is also a flag called `generateAll`, this gives you the possibility to either generate all invoices at once, or only the last one (default is `false`, which means only last invoice will be generated)
 * `default` template is simply a skeleton from which you can create your own template
 * `invoices.json` is most important file, since it keeps all the invoices to be generated.
-* in an `item` in `items` in invoice has `sumNetto` `sumVat` and `sumBrutto` fields, they will not be calculated by the script, this is done for those situations, when for some reason you need to manually edit the values.
+* if given `item` in `items` array for given `invoice` has `sumNetto` `sumVat` and `sumBrutto` fields, they will not be calculated by the script, this is done for those situations, where for some reason you need to manually edit the values. They will be correctly added to the whole sum in the end
 
 ## How to generate invoices
 
