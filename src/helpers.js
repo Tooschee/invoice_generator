@@ -120,17 +120,19 @@ const prepareInvoiceSummary = (items) => {
   let global = 0;
 
   for (const item of items) {
-    netto += item.sumNetto;
-    vat += item.sumVat;
-    global += item.sumBrutto;
+    netto += item.sumNetto * 100;
+    vat += item.sumVat * 100;
+    global += item.sumBrutto * 100;
   }
+  netto /= 100;
+  vat /= 100;
+  global /= 100;
 
   const [decimal, fraction] = global.toString().split('.');
   let globalWords = '';
-
   const toInts = {
     decimal: parseInt(decimal, 10),
-    fraction: parseInt(fraction, 10),
+    fraction: parseInt(fraction.length === 1 ? fraction * 10 : fraction, 10),
   };
 
   const lastDigitDecimal = parseInt(decimal[decimal.length - 1], 10);
@@ -139,7 +141,8 @@ const prepareInvoiceSummary = (items) => {
   const currencyWord = wordEnding.includes(lastDigitDecimal) ? 'złotych' : 'złote';
   globalWords = `${amountToWords(toInts.decimal)} ${currencyWord}`;
   if (fraction) {
-    const lastDigitFraction = parseInt(fraction[fraction.length - 1], 10);
+    const fractionFilled = fraction.length === 1 ? `${fraction}0` : fraction;
+    const lastDigitFraction = parseInt(fractionFilled[fractionFilled.length - 1], 10);
     const fractionWord = wordEnding.includes(lastDigitFraction) ? 'groszy' : 'grosze';
     globalWords = `${globalWords} ${amountToWords(toInts.fraction)} ${fractionWord}`;
   }
